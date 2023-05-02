@@ -5,6 +5,7 @@ import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import json from "@rollup/plugin-json";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import copy from "rollup-plugin-copy-assets";
 
 const packageJson = require("./package.json");
 
@@ -23,6 +24,20 @@ export default [
         sourcemap: false,
       },
     ],
+    resolve: {
+      fallback: {
+        crypto: require.resolve("crypto-browserify"),
+        stream: require.resolve("stream-browserify"),
+        https: require.resolve("https-browserify"),
+        url: require.resolve("url"),
+        http: require.resolve("stream-http"),
+        path: require.resolve("path-browserify"),
+        zlib: require.resolve("browserify-zlib"),
+        buffer: require.resolve("buffer"),
+        fs: require.resolve("fs"),
+        util: require.resolve("util")
+      }
+    },
     plugins: [
       peerDepsExternal(),
       typescript({ tsconfig: "./tsconfig.json" }),
@@ -30,6 +45,11 @@ export default [
       commonjs(),
       json(),
       postcss(),
+      copy({
+        assets: [
+          "src/lib/assets/**/*"
+        ]
+      })
     ],
   },
   {

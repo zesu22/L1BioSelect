@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Mosip L1 Biometric Dropdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A standalone library component for interacting with SBI devices and auth capture Face, Finger & Iris detail.
 
-## Available Scripts
+## Build
 
-In the project directory, you can run:
+To build up the library
 
-### `npm start`
+```bash
+npm run rollup
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To generate a package from it
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm pack
+```
 
-### `npm test`
+For publishing the package
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm publish
+```
 
-### `npm run build`
+## Props
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Common props you may want to specify include:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| prop           | type     | default value   | note                                                                                                                                                                     |
+| -------------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `labelName`    | `string` | Select a Device | Device dropdown label                                                                                                                                                    |
+| `buttonName`   | `string` | Scan and Verify | Capture button label                                                                                                                                                     |
+| `transactionId`| `string` | | Transaction id of the current biometric authorization |
+| `onCapture`    | `func`   |                 | The function to be called on a successful capture with [Biometric response](https://docs.mosip.io/1.1.5/biometrics/mosip-device-service-specification#capture-response). |
+| `onErrored`    | `func`   |                 | optional callback function on capture failure with error msg string.                                                                                                     |
+| `jsonCss`      | `Object` | See below       | Json object for customize the css of the component                                                                                                                       |
+| `biometricEnv` | `Object` | See below       | Biometric environment detail                                                                                                                                             |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prop jsonCss
 
-### `npm run eject`
+For more information check [React-JSS integration page](https://cssinjs.org/react-jss)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| field          | type     | note                          |
+| -------------- | -------- | ----------------------------- |
+| `selectBox`    | `Object` | Css for select dropdown       |
+| `selectLabel`  | `Object` | Css for select dropdown label |
+| `verifyButton` | `Object` | Css for verify button         |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Prop biometricEnv
+For more information check [MDS Specification](https://docs.mosip.io/1.1.5/biometrics/mosip-device-service-specification)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| field                | type     | valid values                                                                                                                                                                                                   | default value | note                                                                             |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------- |
+| `env`                | `string` | ("Staging", "Developer", "Pre-Production", "Production")                                                                                                                                                       | "Staging"     | The target environment.                                                          |
+| `captureTimeout`     | `number` |                                                                                                                                                                                                                | 30            | Max time the app will wait for the capture api call.                             |
+| `discTimeout`        | `number` |                                                                                                                                                                                                                | 30            | Max time the app will wait for the discover api call.                            |
+| `dinfoTimeout`       | `number` |                                                                                                                                                                                                                | 30            | Max time the app will wait for the device info api call.                         |
+| `domainUri`          | `string` |                                                                                                                                                                                                                | window.origin | URI of the authentication server.                                                |
+| `faceCaptureCount`   | `number` | Always set to 1                                                                                                                                                                                                | 1             | Number of biometric data that is collected for face.                             |
+| `faceCaptureScore`   | `number` | Floating point number ranges from 0-100.                                                                                                                                                                       | 70            | Expected quality score that should match to complete a successful face capture   |
+| `fingerBioSubtypes`  | `string` | ["Left IndexFinger", "Left MiddleFinger", "Left RingFinger", "Left LittleFinger", "Left Thumb", "Right IndexFinger", "Right MiddleFinger", "Right RingFinger", "Right LittleFinger", "Right Thumb", "UNKNOWN"] | "UNKNOWN"     | Array of bioSubType for finger.                                                  |
+| `fingerCaptureCount` | `number` | Ranges from 1 to 10                                                                                                                                                                                            | 1             | Number of biometric data that is collected for finger.                           |
+| `fingerCaptureScore` | `number` | Floating point number ranges from 0-100.                                                                                                                                                                       | 70            | Expected quality score that should match to complete a successful finger capture |
+| `irisBioSubtypes`    | `string` | ["Left", "Right", "UNKNOWN"]                                                                                                                                                                                   | "UNKNOWN"     | Array of bioSubType for iris                                                     |
+| `irisCaptureCount`   | `number` | Ranges from 1 to 2                                                                                                                                                                                             | 1             | Number of biometric data that is collected for Iris.                             |
+| `irisCaptureScore`   | `number` | Floating point number ranges from 0-100.                                                                                                                                                                       | 70            | Expected quality score that should match to complete a successful iris capture   |
+| `portRange`          | `string` | Port should be under that range of 4501 - 4600.                                                                                                                                                                | "4501-4600"   | Range of port that will be scanned for available devices                         |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `react-select` - a third party dropdown component, licensed under MIT
+- `react-jss` - use to apply css in DOM through JSON object, licensed under MIT
+- `axios` - is a promised-based HTTP client for JavaScript licensed under MIT
+- `rollup` - is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application, licensed under MIT
+- `rollup-plugin-dts` - a plugin that lets you roll-up your `.d.ts` definition files, licensed under LGPL-3.0
+- `rollup-plugin-postcss` - used for seamless integration between rollup & postcss , licensed under MIT
+- `@rollup/plugin-commonjs` - a Rollup plugin to convert CommonJS modules to ES6, so they can be included in a Rollup bundle, licensed under MIT
+- `@rollup/plugin-node-resolve` - a Rollup plugin which locates modules using the Node resolution algorithm, for using third party modules in `node_modules`, licensed under MIT
+- `@rollup/plugin-typescript` - a Rollup plugin for seamless integration between Rollup and Typescript, licensed under MIT
+- `jose` - a JavaScript module for JSON Object Signing and Encryption, providing support for JSON Web Tokens (JWT), JSON Web Signature (JWS), JSON Web Encryption (JWE), JSON Web Key (JWK), JSON Web Key Set (JWKS), licensed under MIT
