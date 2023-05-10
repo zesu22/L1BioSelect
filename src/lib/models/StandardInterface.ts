@@ -2,6 +2,7 @@ import {
   buttonTypes,
   challengeFormats,
   challengeTypes,
+  DeviceStateStatusType,
   EnvType,
   FingerSubBioType,
   IrisBioSubType,
@@ -130,6 +131,7 @@ interface IDeviceDetail {
   text: string;
   value: string;
   icon: string;
+  status: DeviceStateStatusType;
 }
 
 interface IFormActionProps {

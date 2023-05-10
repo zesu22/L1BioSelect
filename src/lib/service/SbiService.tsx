@@ -1,14 +1,7 @@
 import axios from "axios";
 import { localStorageService } from "./";
 import * as jose from "jose";
-import {
-  BioType,
-  EnvType,
-  FingerSubBioType,
-  IBiometricEnv,
-  IDeviceInfo,
-  IrisBioSubType,
-} from "../models";
+import { BioType, IBiometricEnv, IDeviceInfo } from "../models";
 
 const {
   addDeviceInfos,
@@ -36,25 +29,19 @@ class SbiService {
 
   constructor(
     esignetConfig: IBiometricEnv = {
-      env: `${process.env.REACT_APP_SBI_ENV}` as EnvType,
-      captureTimeout: Number(process.env.REACT_APP_SBI_CAPTURE_TIMEOUT),
-      irisBioSubtypes:
-        `${process.env.REACT_APP_SBI_IRIS_BIO_SUBTYPES}` as IrisBioSubType,
-      fingerBioSubtypes:
-        `${process.env.REACT_APP_SBI_FINGER_BIO_SUBTYPES}` as FingerSubBioType,
-      faceCaptureCount: Number(process.env.REACT_APP_SBI_FACE_CAPTURE_COUNT),
-      faceCaptureScore: Number(process.env.REACT_APP_SBI_FACE_CAPTURE_SCORE),
-      fingerCaptureCount: Number(
-        process.env.REACT_APP_SBI_FINGER_CAPTURE_COUNT
-      ),
-      fingerCaptureScore: Number(
-        process.env.REACT_APP_SBI_FINGER_CAPTURE_SCORE
-      ),
-      irisCaptureCount: Number(process.env.REACT_APP_SBI_IRIS_CAPTURE_COUNT),
-      irisCaptureScore: Number(process.env.REACT_APP_SBI_IRIS_CAPTURE_SCORE),
-      portRange: `${process.env.REACT_APP_SBI_PORT_RANGE}`,
-      discTimeout: Number(process.env.REACT_APP_SBI_DISC_TIMEOUT),
-      dinfoTimeout: Number(process.env.REACT_APP_SBI_DINFO_TIMEOUT),
+      env: "Staging",
+      captureTimeout: 30,
+      irisBioSubtypes: "UNKNOWN",
+      fingerBioSubtypes: "UNKNOWN",
+      faceCaptureCount: 1,
+      faceCaptureScore: 70,
+      fingerCaptureCount: 1,
+      fingerCaptureScore: 70,
+      irisCaptureCount: 1,
+      irisCaptureScore: 70,
+      portRange: "4501-4600",
+      discTimeout: 15,
+      dinfoTimeout: 30,
       domainUri: `${window.origin}`,
     }
   ) {
@@ -205,14 +192,9 @@ const discoverRequestBuilder = async (
     method: mosip_DiscoverMethod,
     url: endpoint,
     data: request,
-    timeout: discTimeout + 1000,
+    timeout: discTimeout * 1000,
   })
     .then(async (response: any) => {
-      console.log(
-        "****************inside discoverRequestBuilder*****************"
-      );
-      console.log({ endpoint, request, response });
-
       if (response?.data !== null) {
         addDiscoveredDevices(port, response.data);
         await mosipdinfo_DeviceInfo(host, port, dinfoTimeout);
@@ -242,18 +224,10 @@ const mosipdinfo_DeviceInfo = async (
     timeout: dinfoTimeout * 1000,
   })
     .then(async (response: any) => {
-      console.log(
-        "****************inside mosipdinfo_DeviceInfo*****************"
-      );
-      console.log({ endpoint, response });
-
       if (response?.data !== null) {
         var decodedDeviceDetails = await decodeAndValidateDeviceInfo(
           response.data
         );
-        console.log('****************decodedDeviceDetails*****************');
-        console.log({ decodedDeviceDetails });
-        
         addDeviceInfos(port, decodedDeviceDetails);
       }
     })

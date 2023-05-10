@@ -5,7 +5,7 @@ import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import json from "@rollup/plugin-json";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import copy from "rollup-plugin-copy-assets";
+import image from "@rollup/plugin-image";
 
 const packageJson = require("./package.json");
 
@@ -35,8 +35,8 @@ export default [
         zlib: require.resolve("browserify-zlib"),
         buffer: require.resolve("buffer"),
         fs: require.resolve("fs"),
-        util: require.resolve("util")
-      }
+        util: require.resolve("util"),
+      },
     },
     plugins: [
       peerDepsExternal(),
@@ -45,11 +45,7 @@ export default [
       commonjs(),
       json(),
       postcss(),
-      copy({
-        assets: [
-          "src/lib/assets/**/*"
-        ]
-      })
+      image(),
     ],
   },
   {

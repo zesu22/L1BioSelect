@@ -31,4 +31,7 @@ export {
   deepLinkParamPlaceholder,
   deviceType,
   validAuthFactors,
+  DeviceStateStatus,
+  DeviceStateStatusType,
+  DeviceState,
 } from "./ClientConstant";
