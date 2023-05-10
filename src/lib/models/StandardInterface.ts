@@ -3,7 +3,14 @@ import {
   EnvType,
   FingerSubBioType,
   IrisBioSubType,
-} from "./ClientConstant";
+} from "./StandardType";
+
+interface IDeviceState {
+  value: string;
+  name: string;
+  class: string;
+  symbol: string;
+}
 
 interface IDeviceInfo {
   specVersion: string[];
@@ -62,7 +69,6 @@ interface IInputField {
 }
 
 interface IErrorClass {
-  prefix?: string;
   errorCode?: string;
   defaultMsg?: string;
 }
@@ -98,6 +104,7 @@ interface IBiometricEnv {
 }
 
 export {
+  IDeviceState,
   IDeviceInfo,
   IDigitalId,
   IDiscoverResponse,

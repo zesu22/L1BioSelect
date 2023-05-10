@@ -1,1 +1,1 @@
-export { default as L1BioSelect } from "./L1BioSelect";
+export { default as MosipBioDevice } from "./MosipBioDevice";

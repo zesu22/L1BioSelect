@@ -1,3 +1,5 @@
+export { IMosipBioDeviceProps } from "./IMosipBioDeviceProps";
+
 export {
   IDeviceInfo,
   IDigitalId,
@@ -8,14 +10,22 @@ export {
   IDeviceDetail,
   IBiometricEnv,
 } from "./StandardInterface";
-export { IL1BioSelectProps } from "./IL1BioSelectProps";
-export { LoadingStates } from "./States";
+
+export {
+  host,
+  DeviceState,
+  DeviceStateStatus,
+  LoadingStates,
+  errorRibbonClass,
+  loadingContClass,
+  verifyButtonClass,
+  scanButtonClass,
+} from "./StandardConstant";
+
 export {
   EnvType,
   BioType,
   IrisBioSubType,
   FingerSubBioType,
-  DeviceStateStatus,
   DeviceStateStatusType,
-  DeviceState,
-} from "./ClientConstant";
+} from "./StandardType";

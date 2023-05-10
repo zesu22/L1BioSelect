@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import { LoadingIndicator } from "../common";
+import { localStorageService, SbiService } from "../service";
 import {
   DeviceState,
   DeviceStateStatus,
   IBiometricEnv,
   IDeviceDetail,
   IDeviceInfo,
-  IL1BioSelectProps,
+  IMosipBioDeviceProps,
   LoadingStates as states,
+  host,
+  errorRibbonClass,
+  loadingContClass,
+  verifyButtonClass,
+  scanButtonClass,
 } from "../models";
-import { localStorageService, SbiService } from "../service";
 
 import faceIcon from "../assets/face_sign_in.png";
 import fingerIcon from "../assets/fingerprint_sign_in.png";
 import irisIcon from "../assets/iris_sign_in.png";
 
-import "./L1BioSelect.scss";
-
-const host = "http://127.0.0.1";
+import "./MosipBioDevice.scss";
 
 const modalityIconPath: { [name: string]: string } = {
   Face: faceIcon,
@@ -26,20 +29,9 @@ const modalityIconPath: { [name: string]: string } = {
   Iris: irisIcon,
 };
 
-const L1BioSelect = (props: IL1BioSelectProps) => {
-  const errorRibbonClass =
-    "p-2 mt-1 mb-1 w-full text-center text-sm rounded-lg text-red-700 bg-red-100 ";
-
-  const loadingContClass =
-    "absolute bottom-0 left-0 bg-white bg-opacity-70 h-full w-full flex justify-center font-semibold";
-
-  const verifyButtonClass =
-    "cursor-pointer block w-full font-medium rounded-lg text-sm px-5 py-2 text-center border border-2 ";
-
-  const scanButtomClass =
-    "cursor-pointer flex items-center ml-auto text-gray-900 bg-white shadow border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-lg px-3 py-1 ml-1";
-
+const MosipBioDevice = (props: IMosipBioDeviceProps) => {
   const sbiService = new SbiService(props.biometricEnv);
+
   const { getDeviceInfos } = {
     ...localStorageService,
   };
@@ -73,7 +65,6 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
     } catch (error: any) {
       setErrorState("Device discovery failed");
       props.onErrored({
-        prefix: "Device discovery failed",
         errorCode: error.message,
         defaultMsg: error.message,
       });
@@ -96,7 +87,6 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
         setStatus({ state: states.LOADED, msg: "" });
         setErrorState("Device discovery failed");
         props.onErrored({
-          prefix: "Device discovery failed",
           errorCode: "device_not_found_msg",
           defaultMsg: "Device not found",
         });
@@ -206,7 +196,6 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
     } catch (error: any) {
       setErrorState("Biometric capture failed");
       props.onErrored({
-        prefix: "Biometric Capture Failed",
         errorCode: error.message,
         defaultMsg: error.message,
       });
@@ -262,7 +251,7 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
               />
               <button
                 type="button"
-                className={scanButtomClass}
+                className={scanButtonClass}
                 onClick={handleScan}
               >
                 &#x21bb;
@@ -300,4 +289,4 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
   );
 };
 
-export default L1BioSelect;
+export default MosipBioDevice;

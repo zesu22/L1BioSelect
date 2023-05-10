@@ -55,11 +55,10 @@ const localStorageService = {
    * @param {int} port
    * @param {*} decodedDeviceInfo
    */
-  addDeviceInfos: (port: number, decodedDeviceInfo: IDeviceInfo | IDeviceInfo[]) => {
-    console.log('************inside addDeviceInfos**************');
-    console.log({port, decodedDeviceInfo});
-    
-    
+  addDeviceInfos: (
+    port: number,
+    decodedDeviceInfo: IDeviceInfo | IDeviceInfo[]
+  ) => {
     let deviceInfo: any = {};
 
     //initialize if empty

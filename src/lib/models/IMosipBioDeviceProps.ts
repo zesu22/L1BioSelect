@@ -1,6 +1,6 @@
 import { IBiometricEnv, IErrorClass } from "./StandardInterface";
 
-interface IL1BioSelectProps {
+interface IMosipBioDeviceProps {
     labelName: string;
     buttonName: string;
     transactionId: string;
@@ -10,4 +10,4 @@ interface IL1BioSelectProps {
     onErrored: (errorObj: IErrorClass | null) => void;
   }
   
-  export { IL1BioSelectProps };
+  export { IMosipBioDeviceProps };

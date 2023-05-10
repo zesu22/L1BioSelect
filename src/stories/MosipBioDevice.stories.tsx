@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { L1BioSelect } from "../index";
-import { IL1BioSelectProps } from "../lib/models";
+import { MosipBioDevice } from "../index";
 
-const L1BioSelectMeta: Meta<typeof L1BioSelect> = {
-  title: "L1BioSelect",
-  component: L1BioSelect,
+const MosipBioDeviceMeta: Meta<typeof MosipBioDevice> = {
+  title: "MosipBioDevice",
+  component: MosipBioDevice,
   tags: ["autodocs"],
   argTypes: {
     labelName: {
@@ -26,8 +25,7 @@ const L1BioSelectMeta: Meta<typeof L1BioSelect> = {
   },
 };
 
-export default L1BioSelectMeta;
-type Story = StoryObj<typeof L1BioSelectMeta>;
+export default MosipBioDeviceMeta;
 
 const myChange = (e: any) => {
   console.log("my changes");
@@ -39,16 +37,17 @@ const myError = (e: any) => {
   console.log(e);
 };
 
-export const L1BioSelectStory: StoryObj<typeof L1BioSelectMeta> = {
+export const MosipBioDeviceStory: StoryObj<typeof MosipBioDeviceMeta> = {
   render: (args) => {
     return (
       <div style={{ width: "300px" }}>
-        <L1BioSelect {...args} />
+        <MosipBioDevice {...args} />
       </div>
     );
   },
 };
-L1BioSelectStory.args = {
+
+MosipBioDeviceStory.args = {
   labelName: "Biometric Device",
   buttonName: "Scan & Verify",
   transactionId: "My Transaction Id",
@@ -66,6 +65,7 @@ L1BioSelectStory.args = {
     portRange: "4501-4510",
     discTimeout: 15,
     dinfoTimeout: 30,
+    domainUri: `${window.origin}`,
   },
   onCapture: myChange,
   onErrored: myError,

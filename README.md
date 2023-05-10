@@ -22,6 +22,19 @@ For publishing the package
 npm publish
 ```
 
+## Component
+
+```js
+<MosipBioDevice 
+    transactionId="your_transaction_id"
+    labelName="label_name"
+    buttonName="button_name"
+    biometricEnv={biometricEnv}
+    onCapture={myChange}
+    onErrored={myError}>
+</MosipBioDevice>
+```
+
 ## Props
 
 Common props you may want to specify include:
@@ -73,8 +86,11 @@ For more information check [MDS Specification](https://docs.mosip.io/1.1.5/biome
 - `axios` - is a promised-based HTTP client for JavaScript licensed under MIT
 - `rollup` - is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application, licensed under MIT
 - `rollup-plugin-dts` - a plugin that lets you roll-up your `.d.ts` definition files, licensed under LGPL-3.0
+- `rollup-plugin-peer-deps-external` - Automatically externalize peerDependencies in a rollup bundle, licensed under MIT
 - `rollup-plugin-postcss` - used for seamless integration between rollup & postcss , licensed under MIT
 - `@rollup/plugin-commonjs` - a Rollup plugin to convert CommonJS modules to ES6, so they can be included in a Rollup bundle, licensed under MIT
+- `@rollup/plugin-image` - A Rollup plugin which imports JPG, PNG, GIF, SVG, and WebP files, licensed under MIT
+- `@rollup/plugin-json` -  A Rollup plugin which Converts .json files to ES6 modules, licensed under MIT
 - `@rollup/plugin-node-resolve` - a Rollup plugin which locates modules using the Node resolution algorithm, for using third party modules in `node_modules`, licensed under MIT
 - `@rollup/plugin-typescript` - a Rollup plugin for seamless integration between Rollup and Typescript, licensed under MIT
 - `jose` - a JavaScript module for JSON Object Signing and Encryption, providing support for JSON Web Tokens (JWT), JSON Web Signature (JWS), JSON Web Encryption (JWE), JSON Web Key (JWK), JSON Web Key Set (JWKS), licensed under MIT

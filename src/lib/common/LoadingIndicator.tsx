@@ -1,5 +1,3 @@
-import React from "react";
-
 const dynamicSize: { [name: string]: object } = {
   small: {
     width: "1.5rem",
