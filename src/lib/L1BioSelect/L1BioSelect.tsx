@@ -39,7 +39,7 @@ const L1BioSelect = (props: IL1BioSelectProps) => {
   const scanButtomClass =
     "cursor-pointer flex items-center ml-auto text-gray-900 bg-white shadow border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-lg px-3 py-1 ml-1";
 
-  const sbiService = new SbiService(props.biometricEnv as IBiometricEnv);
+  const sbiService = new SbiService(props.biometricEnv);
   const { getDeviceInfos } = {
     ...localStorageService,
   };

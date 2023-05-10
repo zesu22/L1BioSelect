@@ -1,59 +1,9 @@
 import {
-  buttonTypes,
-  challengeFormats,
-  challengeTypes,
   DeviceStateStatusType,
   EnvType,
   FingerSubBioType,
   IrisBioSubType,
 } from "./ClientConstant";
-
-interface IAuthResponse {
-  transactionId: string;
-}
-
-interface IAuthChallenge {
-  authFactoryType: challengeTypes;
-  format: challengeFormats;
-  challenge: string;
-}
-
-interface IAuthenticationFactor {
-  type: string;
-  count: number;
-  subTypes: string[];
-}
-
-interface IOAuthDetailResponse {
-  transactionId: string;
-  clientName: string;
-  logoUrl: string;
-  authFactors: Array<IAuthenticationFactor[]>;
-  authorizeScopes: string[];
-  essentialClaims: string[];
-  voluntaryClaims: string[];
-  configs: Record<string, Object>;
-  redirectUri: string;
-}
-
-interface IAuthCodeResponse {
-  nonce: string;
-  state: string;
-  code: string;
-  redirectUri: string;
-}
-
-interface IOtpResponse {
-  transactionId: string;
-  maskedEmail: string;
-  maskedMobile: string;
-}
-
-interface ICsrfToken {
-  headerName: string;
-  parameterName: string;
-  token: string;
-}
 
 interface IDeviceInfo {
   specVersion: string[];
@@ -100,10 +50,6 @@ interface IErrorInfo {
   errorInfo: string;
 }
 
-interface IBioLoginFields {
-  inputFields: IInputField[];
-}
-
 interface IInputField {
   labelText: string;
   labelFor: string;
@@ -134,13 +80,6 @@ interface IDeviceDetail {
   status: DeviceStateStatusType;
 }
 
-interface IFormActionProps {
-  type?: buttonTypes;
-  text?: string | null;
-  disabled?: boolean;
-  handleClick?: () => void;
-}
-
 interface IBiometricEnv {
   env: EnvType;
   captureTimeout: number;
@@ -159,21 +98,12 @@ interface IBiometricEnv {
 }
 
 export {
-  IAuthChallenge,
-  IAuthResponse,
-  IOAuthDetailResponse,
-  IAuthenticationFactor,
-  IAuthCodeResponse,
-  IOtpResponse,
-  ICsrfToken,
   IDeviceInfo,
   IDigitalId,
   IDiscoverResponse,
   IErrorInfo,
-  IBioLoginFields,
   IInputField,
   IErrorClass,
   IDeviceDetail,
-  IFormActionProps,
   IBiometricEnv,
 };
