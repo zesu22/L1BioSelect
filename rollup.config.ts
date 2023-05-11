@@ -47,6 +47,16 @@ export default [
       postcss(),
       image(),
     ],
+    external: [
+      "@storybook/addon-essentials",
+      "@storybook/addon-interactions",
+      "@storybook/addon-links",
+      "@storybook/blocks",
+      "@storybook/preset-scss",
+      "@storybook/react",
+      "@storybook/react-webpack5",
+      "@storybook/testing-library",
+    ],
   },
   {
     input: "dist/esm/types/index.d.ts",
