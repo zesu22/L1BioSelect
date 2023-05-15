@@ -60,13 +60,18 @@
     "typescript": "^4.9.5",
     "url": "^0.11.0",
     "util": "^0.12.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "npm-watch": "^0.11.0",
+    "i18next": "^21.10.0",
+    "react-i18next": "^11.18.6"
   },
   "peerDependencies": {
     "axios": "^1.4.0",
     "jose": "^4.14.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "i18next": "^21.10.0",
+    "react-i18next": "^11.18.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -76,7 +81,8 @@
     "rollup": "rollup -c",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "package": "npm run rollup && npm pack"
+    "package": "npm run rollup && npm pack",
+    "watch": "npm-watch"
   },
   "eslintConfig": {
     "extends": [
@@ -95,5 +101,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src/lib"
+      ],
+      "extensions": "ts,tsx"
+    }
   }
 }
