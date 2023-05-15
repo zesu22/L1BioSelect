@@ -30,22 +30,32 @@
     width: 100%;
 }
 
+.mdb-text-white {
+    --mdb-text-opacity: 1;
+    color: rgb(255, 255, 255, var(--mdb-text-opacity));
+}
+
+.mdb-text-slate-400 {
+    --mdb-text-opacity: 1;
+    color: rgb(148, 163, 184, var(--mdb-text-opacity));
+}
+
 .mdb-text-gray-900 {
-    --text-opacity: 1;
+    --mdb-text-opacity: 1;
     color: #1a202c;
-    color: rgba(26, 32, 44, var(--text-opacity));
+    color: rgba(26, 32, 44, var(--mdb-text-opacity));
 }
 
 .mdb-text-red-700 {
-    --text-opacity: 1;
+    --mdb-text-opacity: 1;
     color: #c53030;
-    color: rgba(197, 48, 48, var(--text-opacity));
+    color: rgba(197, 48, 48, var(--mdb-text-opacity));
 }
 
 .mdb-bg-red-100 {
-    --bg-opacity: 1;
+    --mdb-bg-opacity: 1;
     background-color: #fff5f5;
-    background-color: rgba(255, 245, 245, var(--bg-opacity));
+    background-color: rgba(255, 245, 245, var(--mdb-bg-opacity));
 }
 
 .mdb-text-sm {
@@ -53,9 +63,9 @@
 }
 
 .mdb-bg-white {
-    --bg-opacity: 1;
+    --mdb-bg-opacity: 1;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    background-color: rgba(255, 255, 255, var(--mdb-bg-opacity));
 }
 
 .mdb-shadow {
@@ -67,15 +77,15 @@
 }
 
 .mdb-border-gray-300 {
-    --border-opacity: 1;
+    --mdb-border-opacity: 1;
     border-color: #e2e8f0;
-    border-color: rgba(226, 232, 240, var(--border-opacity));
+    border-color: rgba(226, 232, 240, var(--mdb-border-opacity));
 }
 
 .mdb-hover\:bg-gray-100:hover {
-    --bg-opacity: 1;
+    --mdb-bg-opacity: 1;
     background-color: #f7fafc;
-    background-color: rgba(247, 250, 252, var(--bg-opacity));
+    background-color: rgba(247, 250, 252, var(--mdb-bg-opacity));
 }
 
 .mdb-font-medium {
@@ -99,7 +109,7 @@
 }
 
 .mdb-text-opacity-70 {
-    --text-opacity: 70;
+    --mdb-text-opacity: 70;
 }
 
 .mdb-px-3 {
@@ -138,12 +148,16 @@
     margin-bottom: .25rem;
 }
 
-.mdb-ml-auto {
-    margin-left: auto !important;
-}
-
 .mdb-mb-2 {
     margin-bottom: .5rem;
+}
+
+.mdb-mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mdb-ml-auto {
+    margin-left: auto !important;
 }
 
 .mdb-mr-2 {
@@ -167,7 +181,7 @@
 }
 
 .mdb-bg-opacity-70 {
-    --bg-opacity: 0.7;
+    --mdb-bg-opacity: 0.7;
 }
 
 .mdb-cursor-pointer {
@@ -201,4 +215,15 @@
     background: white;
     border-color: gray;
     border-width: 2px;
+}
+
+.mdb-bg-gradient {
+    --mdb-gradient-from: #06b6d4;
+    --mdb-gradient-to: #3b82f6;
+    --mdb-gradient-stops: var(--mdb-gradient-from), var(--mdb-gradient-to);
+    background-image: linear-gradient(to top, var(--mdb-gradient-stops));
+
+    &:hover {
+        background-image: linear-gradient(to bottom, var(--mdb-gradient-stops));
+    }
 }

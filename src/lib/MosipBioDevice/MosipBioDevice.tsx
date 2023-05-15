@@ -232,7 +232,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
         )}
         {status.state === states.LOADED && (
           <>
-            <div className="mdb-flex mdb-flex-col mdb-justify-center mdb-w-full">
+            <div className="mdb-flex mdb-flex-col mdb-justify-center mdb-w-full mdb-mb-4">
               <label
                 htmlFor="modality_device"
                 className="block mb-2 text-xs font-medium text-gray-900 text-opacity-70"
@@ -268,7 +268,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
                         type="button"
                         value="button"
                         onClick={scanAndVerify}
-                        className={verifyButtonClass}
+                        className={verifyButtonClass + (props.disable ? " mdb-text-slate-400" : " mdb-bg-gradient mdb-text-white")}
                         disabled={props.disable}
                       >
                         {props.buttonName}
