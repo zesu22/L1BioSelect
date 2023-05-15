@@ -22,7 +22,6 @@ import fingerIcon from "../assets/fingerprint_sign_in.png";
 import irisIcon from "../assets/iris_sign_in.png";
 
 import "./MosipBioDevice.scss";
-import { useTranslation } from "react-i18next";
 
 const modalityIconPath: { [name: string]: string } = {
   Face: faceIcon,
@@ -31,8 +30,6 @@ const modalityIconPath: { [name: string]: string } = {
 };
 
 const MosipBioDevice = (props: IMosipBioDeviceProps) => {
-  const { t, i18n } = useTranslation();
-
   const sbiService = new SbiService(props.biometricEnv);
 
   const { getDeviceInfos } = {
@@ -55,24 +52,18 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
     scanDevices();
   }, []);
 
-  useEffect(() => {
-    if (props.langCode) {
-      i18n.changeLanguage(props.langCode);
-    }
-  }, [props]);
-
   const scanDevices = () => {
     props.onErrored(null);
     setErrorState(null);
     try {
       setStatus({
         state: states.LOADING,
-        msg: t("scanning_devices_msg"),
+        msg: "Scanning Devices. Please Wait...",
       });
 
       discoverDevicesAsync(host);
     } catch (error: any) {
-      setErrorState(t("device_disc_failed"));
+      setErrorState("Device discovery failed");
       props.onErrored({
         errorCode: error.message,
         defaultMsg: error.message,
@@ -94,7 +85,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
       if (timeLeft <= 0) {
         clearInterval(intervalId);
         setStatus({ state: states.LOADED, msg: "" });
-        setErrorState(t("device_disc_failed"));
+        setErrorState("Device discovery failed");
         props.onErrored({
           errorCode: "device_not_found_msg",
           defaultMsg: "Device not found",
@@ -118,9 +109,9 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
 
     if (!deviceInfosPortsWise) {
       setModalityDevices([]);
-      setErrorState("device_not_found_msg");
+      setErrorState("No device found");
       props.onErrored({
-        errorCode: "device_not_found_msg",
+        errorCode: "no_devices_found_msg",
       });
       return;
     }
@@ -153,9 +144,9 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
     setModalityDevices(modalitydevices);
 
     if (modalitydevices.length === 0) {
-      setErrorState("device_not_found_msg");
+      setErrorState("No device found");
       props.onErrored({
-        errorCode: "device_not_found_msg",
+        errorCode: "no_devices_found_msg",
       });
       return;
     }
@@ -177,7 +168,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
     props.onErrored(null);
     setErrorState(null);
     if (selectedDevice === null || selectedDevice === undefined) {
-      setErrorState("device_not_found_msg");
+      setErrorState("Device not found");
       props.onErrored({
         errorCode: "device_not_found_msg",
       });
@@ -189,10 +180,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
     try {
       setStatus({
         state: states.AUTHENTICATING,
-        msg: t("capture_initiated_msg", {
-          modality: t(selectedDevice.type),
-          deviceModel: selectedDevice.model,
-        }),
+        msg: `${selectedDevice.type} capture initiated on ${selectedDevice.model}`,
       });
 
       biometricResponse = await sbiService.capture_Auth(
@@ -206,7 +194,7 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
 
       setStatus({ state: states.LOADED, msg: "" });
     } catch (error: any) {
-      setErrorState(t("biometric_capture_failed_msg"));
+      setErrorState("Biometric capture failed");
       props.onErrored({
         errorCode: error.message,
         defaultMsg: error.message,
@@ -249,12 +237,13 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
                 htmlFor="modality_device"
                 className="block mb-2 text-xs font-medium text-gray-900 text-opacity-70"
               >
-                {t(props.labelName)}
+                {props.labelName}
               </label>
               <div className="mdb-flex mdb-items-stretch">
                 <Select
                   name="modality_device"
                   id="modality_device"
+                  aria-label="Modality Device Select"
                   className="mdb-block rounded mdb-bg-white mdb-shadow mdb-w-full mdb-mr-2"
                   value={selectedDevice}
                   options={modalityDevices}
@@ -279,24 +268,18 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
                         type="button"
                         value="button"
                         onClick={scanAndVerify}
-                        className={
-                          verifyButtonClass +
-                          (props.disable
-                            ? " mdb-text-slate-400"
-                            : " mdb-bg-gradient mdb-text-white")
-                        }
+                        className={verifyButtonClass + (props.disable ? " mdb-text-slate-400" : " mdb-bg-gradient mdb-text-white")}
                         disabled={props.disable}
                       >
-                        {t(props.buttonName)}
+                        {props.buttonName}
                       </button>
                     )}
                   {selectedDevice &&
                     selectedDevice.status != DeviceStateStatus.Ready &&
                     errorStateDiv(
-                      t("invalid_state_msg", {
-                        deviceName: selectedDevice.text,
-                        deviceState: t(DeviceState[selectedDevice.status].name),
-                      })
+                      selectedDevice.text +
+                        " device is " +
+                        DeviceState[selectedDevice.status].name
                     )}
                 </>
               )}
