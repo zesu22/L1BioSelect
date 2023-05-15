@@ -6,6 +6,7 @@ interface IMosipBioDeviceProps {
     transactionId: string;
     jsonCss?: Object;
     biometricEnv?: IBiometricEnv;
+    disable?: boolean;
     onCapture: (biometricResponse: Object) => void;
     onErrored: (errorObj: IErrorClass | null) => void;
   }

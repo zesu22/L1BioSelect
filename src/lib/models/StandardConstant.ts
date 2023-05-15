@@ -47,7 +47,7 @@ const errorRibbonClass =
   "p-2 mt-1 mb-1 w-full text-center text-sm rounded-lg text-red-700 bg-red-100 ";
 
 const loadingContClass =
-  "absolute bottom-0 left-0 bg-white bg-opacity-70 h-full w-full flex justify-center font-semibold";
+  "bottom-0 left-0 bg-white bg-opacity-70 py-4 h-full w-full flex justify-center font-semibold";
 
 const verifyButtonClass =
   "cursor-pointer block w-full font-medium rounded-lg text-sm px-5 py-2 text-center border border-2 ";
