@@ -206,10 +206,10 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
   };
 
   const bioSelectOptionLabel = (e: IDeviceDetail) => (
-    <div className="flex items-center h-7">
+    <div className="mdb-flex mdb-items-center h-7">
       <img className="w-7" src={e.icon} />
-      <span className="ml-2 text-xs">{e.text}</span>
-      <span className={DeviceState[e.status].class + " ml-auto"}></span>
+      <span className="mdb-ml-2 mdb-text-xs">{e.text}</span>
+      <span className={DeviceState[e.status].class + " mdb-ml-auto"}></span>
     </div>
   );
 
@@ -220,72 +220,75 @@ const MosipBioDevice = (props: IMosipBioDeviceProps) => {
   );
 
   return (
-    <>
-      {(status.state === states.LOADING ||
-        status.state === states.AUTHENTICATING) && (
-        <div className={loadingContClass}>
-          <div className="flex items-center">
-            <LoadingIndicator size="medium" message={status.msg} />
-          </div>
-        </div>
-      )}
-      {status.state === states.LOADED && (
-        <div className="flex flex-col">
-          <div className="flex flex-col justify-center w-full">
-            <label
-              htmlFor="modality_device"
-              className="block mb-2 text-xs font-medium text-gray-900 text-opacity-70"
-            >
-              {props.labelName}
-            </label>
-            <div className="flex items-stretch">
-              <Select
-                name="modality_device"
-                id="modality_device"
-                aria-label="Modality Device Select"
-                className="block rounded bg-white shadow w-full mr-2"
-                value={selectedDevice}
-                options={modalityDevices}
-                onChange={handleDeviceChange}
-                formatOptionLabel={(e: any) => bioSelectOptionLabel(e)}
-              />
-              <button
-                type="button"
-                className={scanButtonClass}
-                onClick={handleScan}
-              >
-                &#x21bb;
-              </button>
+    <div className="mdb-flex mdb-flex-col">
+      <>
+        {(status.state === states.LOADING ||
+          status.state === states.AUTHENTICATING) && (
+          <div className={loadingContClass}>
+            <div className="mdb-flex mdb-items-center">
+              <LoadingIndicator size="medium" message={status.msg} />
             </div>
           </div>
-          <div className="flex py-2">
-            {!errorState && (
-              <>
-                {selectedDevice &&
-                  selectedDevice.status == DeviceStateStatus.Ready && (
-                    <button
-                      type="button"
-                      value="button"
-                      onClick={scanAndVerify}
-                      className={verifyButtonClass}
-                    >
-                      {props.buttonName}
-                    </button>
-                  )}
-                {selectedDevice &&
-                  selectedDevice.status != DeviceStateStatus.Ready &&
-                  errorStateDiv(
-                    selectedDevice.text +
-                      " device is " +
-                      DeviceState[selectedDevice.status].name
-                  )}
-              </>
-            )}
-            {errorState && errorStateDiv(errorState)}
-          </div>
-        </div>
-      )}
-    </>
+        )}
+        {status.state === states.LOADED && (
+          <>
+            <div className="mdb-flex mdb-flex-col mdb-justify-center mdb-w-full">
+              <label
+                htmlFor="modality_device"
+                className="block mb-2 text-xs font-medium text-gray-900 text-opacity-70"
+              >
+                {props.labelName}
+              </label>
+              <div className="mdb-flex mdb-items-stretch">
+                <Select
+                  name="modality_device"
+                  id="modality_device"
+                  aria-label="Modality Device Select"
+                  className="mdb-block rounded mdb-bg-white mdb-shadow mdb-w-full mdb-mr-2"
+                  value={selectedDevice}
+                  options={modalityDevices}
+                  onChange={handleDeviceChange}
+                  formatOptionLabel={(e: any) => bioSelectOptionLabel(e)}
+                />
+                <button
+                  type="button"
+                  className={scanButtonClass}
+                  onClick={handleScan}
+                >
+                  &#x21bb;
+                </button>
+              </div>
+            </div>
+            <div className="mdb-flex mdb-py-2">
+              {!errorState && (
+                <>
+                  {selectedDevice &&
+                    selectedDevice.status == DeviceStateStatus.Ready && (
+                      <button
+                        type="button"
+                        value="button"
+                        onClick={scanAndVerify}
+                        className={verifyButtonClass}
+                        disabled={props.disable}
+                      >
+                        {props.buttonName}
+                      </button>
+                    )}
+                  {selectedDevice &&
+                    selectedDevice.status != DeviceStateStatus.Ready &&
+                    errorStateDiv(
+                      selectedDevice.text +
+                        " device is " +
+                        DeviceState[selectedDevice.status].name
+                    )}
+                </>
+              )}
+              {errorState && errorStateDiv(errorState)}
+            </div>
+          </>
+        )}
+      </>
+    </div>
   );
 };
 

@@ -44,16 +44,16 @@ const LoadingStates = {
 
 const host = "http://127.0.0.1";
 const errorRibbonClass =
-  "p-2 mt-1 mb-1 w-full text-center text-sm rounded-lg text-red-700 bg-red-100 ";
+  "mdb-p-2 mdb-mt-1 mdb-mb-1 mdb-w-full mdb-text-center mdb-text-sm mdb-rounded-lg mdb-text-red-700 mdb-bg-red-100 ";
 
 const loadingContClass =
-  "bottom-0 left-0 bg-white bg-opacity-70 py-4 h-full w-full flex justify-center font-semibold";
+  "mdb-bottom-0 mdb-left-0 mdb-bg-white mdb-bg-opacity-70 mdb-py-4 mdb-h-full mdb-w-full mdb-flex mdb-justify-center mdb-font-semibold";
 
 const verifyButtonClass =
-  "cursor-pointer block w-full font-medium rounded-lg text-sm px-5 py-2 text-center border border-2 ";
+  "mdb-cursor-pointer mdb-block mdb-w-full mdb-font-medium mdb-rounded-lg mdb-text-sm mdb-px-5 mdb-py-2 mdb-text-center mdb-border mdb-border-2 ";
 
 const scanButtonClass =
-  "cursor-pointer flex items-center ml-auto text-gray-900 bg-white shadow border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-lg px-3 py-1 ml-1";
+  "mdb-cursor-pointer mdb-flex mdb-items-center mdb-ml-auto mdb-text-gray-900 mdb-bg-white mdb-shadow border mdb-border-gray-300 mdb-hover:bg-gray-100 mdb-font-medium mdb-rounded-lg mdb-text-lg mdb-px-3 mdb-py-1 mdb-ml-1";
 
 export {
   host,

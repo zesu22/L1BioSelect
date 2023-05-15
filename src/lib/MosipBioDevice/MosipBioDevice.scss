@@ -1,4 +1,4 @@
-.flex {
+.mdb-flex {
     display: flex;
 
     &-col {
@@ -6,140 +6,171 @@
     }
 }
 
-.justify-center {
+.mdb-justify-center {
     justify-content: center;
 }
 
-.items-center {
+.mdb-items-center {
     align-items: center;
 }
 
-.items-stretch {
+.mdb-items-stretch {
     align-items: stretch;
 }
 
-.block {
+.mdb-block {
     display: block;
 }
 
-.w-full {
+.mdb-h-full {
+    height: 100%;
+}
+
+.mdb-w-full {
     width: 100%;
 }
 
-.text-gray-900 {
+.mdb-text-gray-900 {
+    --text-opacity: 1;
+    color: #1a202c;
     color: rgba(26, 32, 44, var(--text-opacity));
 }
 
-.text-red-700 {
+.mdb-text-red-700 {
     --text-opacity: 1;
     color: #c53030;
-    color: rgba(197,48,48,var(--text-opacity));
+    color: rgba(197, 48, 48, var(--text-opacity));
 }
 
-.bg-red-100 {
+.mdb-bg-red-100 {
     --bg-opacity: 1;
     background-color: #fff5f5;
-    background-color: rgba(255,245,245,var(--bg-opacity));
+    background-color: rgba(255, 245, 245, var(--bg-opacity));
 }
 
-.text-sm {
+.mdb-text-sm {
     font-size: .875rem;
 }
 
-
-.bg-white {
+.mdb-bg-white {
     --bg-opacity: 1;
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
-.shadow {
+.mdb-shadow {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 }
 
-.border {
+.mdb-border {
     border-width: 1px;
 }
 
-.border-gray-300 {
+.mdb-border-gray-300 {
     --border-opacity: 1;
+    border-color: #e2e8f0;
     border-color: rgba(226, 232, 240, var(--border-opacity));
 }
 
-.hover\:bg-gray-100:hover {
+.mdb-hover\:bg-gray-100:hover {
     --bg-opacity: 1;
+    background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
 }
 
-.font-medium {
+.mdb-font-medium {
     font-weight: 500;
 }
 
-.rounded-lg {
+.mdb-font-semibold {
+    font-weight: 600;
+}
+
+.mdb-rounded-lg {
     border-radius: 0.5rem;
 }
 
-.text-lg {
+.mdb-text-lg {
     font-size: 1.125rem;
 }
 
-.text-xs {
+.mdb-text-xs {
     font-size: .75rem;
 }
 
-.text-opacity-70 {
+.mdb-text-opacity-70 {
     --text-opacity: 70;
 }
 
-.px-3 {
+.mdb-px-3 {
     padding-left: .75rem;
     padding-right: .75rem;
 }
 
-.py-1 {
+.mdb-py-1 {
     padding-top: .25rem;
     padding-bottom: .25rem;
 }
 
-.py-2 {
+.mdb-py-2 {
     padding-top: .5rem;
     padding-bottom: .5rem;
 }
 
-.py-4 {
+.mdb-py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
-.p-2 {
+.mdb-p-2 {
     padding: .5rem;
 }
 
-.ml-1 {
+.mdb-ml-1 {
     margin-left: .25rem;
 }
 
-.mt-1 {
+.mdb-mt-1 {
     margin-top: .25rem;
 }
 
-.mb-1 {
+.mdb-mb-1 {
     margin-bottom: .25rem;
 }
 
-.ml-auto {
+.mdb-ml-auto {
     margin-left: auto !important;
 }
 
-.mb-2 {
+.mdb-mb-2 {
     margin-bottom: .5rem;
 }
 
-.mr-2 {
+.mdb-mr-2 {
     margin-right: .5rem;
 }
 
-.cursor-pointer {
+.mdb-bottom-0 {
+    bottom: 0;
+}
+
+.mdb-left-0 {
+    left: 0;
+}
+
+.mdb-border {
+    border-width: 1px;
+}
+
+.mdb-border-2 {
+    border-width: 2px;
+}
+
+.mdb-bg-opacity-70 {
+    --bg-opacity: 0.7;
+}
+
+.mdb-cursor-pointer {
     cursor: pointer;
 }
 
